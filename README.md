@@ -1,6 +1,6 @@
 # JSON Writer
 
-Simple classes for create json using method chaining.  
+Simple classes for create json using method chaining.
 
 
 ## Examples
