@@ -1,14 +1,18 @@
 package com.naskar.jsonwriter;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 
 import com.naskar.jsonwriter.function.Action;
 import com.naskar.jsonwriter.function.BiAction;
 
 public class JsonValue {
+	
+	private static final SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd HH:mm:ssZ");
 	
 	private Json json;
 	private String name;
@@ -47,7 +51,11 @@ public class JsonValue {
 				this.actions.add(x -> t.run(x, v));
 				
 			} else {
-				this.value = v;
+				Object tmp = v;
+				if(tmp instanceof Date) {
+					tmp = "\"" + fmt.format((Date)tmp) + "\"";
+				}
+				this.value = tmp;
 				
 			}
 		} else {
